@@ -2,7 +2,11 @@
 	"meta": {
 		"jurisdiction": "US/CA/common",
 		"version": 1,
-		"inherits": ["US/common"]
+		"inherits": ["US/common"],
+		"resources": [
+			{ "label": "California Residential Code (R314/R315)", "url": "https://codes.iccsafe.org/codes/california" },
+			{ "label": "CA State Fire Marshal", "url": "https://osfm.fire.ca.gov/" }
+		]
 	},
 	"rules": [
 		{

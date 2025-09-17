@@ -102,6 +102,8 @@ class ChecklistPlan(BaseModel):
 	testing: List[TestingAction] = []
 	notes: List[str] = []
 	jurisdiction_chain: List[str] = []
+	# Optional: authoritative links per jurisdiction
+	resources: List[dict] = []
 
 
 class ICSRequest(BaseModel):

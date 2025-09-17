@@ -16,8 +16,8 @@ function formToPayload(form) {
 		floors: Number(obj.floors || 1),
 		has_fuel_appliance: obj.has_fuel_appliance === "true",
 		has_attached_garage: obj.has_attached_garage === "true",
-    year_bucket: obj.year_bucket || null,
-    interconnect_present: obj.interconnect_present || undefined,
+        year_bucket: obj.year_bucket || null,
+        interconnect_present: obj.interconnect_present || "unknown",
 		permit_planned: obj.permit_planned === "" ? false : obj.permit_planned === "true",
 	};
 }
@@ -61,6 +61,29 @@ function renderChecklist(resp) {
 			based.textContent = '';
 		}
 	}
+
+    // Render resources
+    const resWrap = $('#resources');
+    const resList = $('#resource-list');
+    if (resWrap && resList) {
+      resList.innerHTML = '';
+      const links = resp.resources || [];
+      if (links.length) {
+        links.forEach(r => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = r.url;
+          a.textContent = r.label || r.url;
+          a.target = '_blank';
+          a.rel = 'noopener nofollow';
+          li.appendChild(a);
+          resList.appendChild(li);
+        });
+        resWrap.classList.remove('hidden');
+      } else {
+        resWrap.classList.add('hidden');
+      }
+    }
 }
 
 function checklistText(resp) {

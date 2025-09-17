@@ -428,11 +428,25 @@ def evaluate(plan_request: ChecklistRequest) -> ChecklistPlan:
 	# Reverse to keep most specific first as appended; optional
 	testing_actions = list(testing_actions)
 
+	# Collect resources from the chain (most specific first), de-duped by URL
+	resources: List[Dict[str, str]] = []
+	seen_urls: set[str] = set()
+	for j in reversed(chain):
+		doc = _load_json(_jurisdiction_to_path(j))
+		for res in (doc.get("meta", {}).get("resources", []) or []):
+			url = str(res.get("url", "")).strip()
+			label = str(res.get("label", "")).strip() or url
+			if not url or url in seen_urls:
+				continue
+			seen_urls.add(url)
+			resources.append({"label": label, "url": url})
+
 	return ChecklistPlan(
 		recommendations=recommendations,
 		testing=testing_actions,
 		notes=plan_notes,
 		jurisdiction_chain=chain,
+		resources=resources,
 	)
 
 

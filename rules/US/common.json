@@ -1,7 +1,10 @@
 {
 	"meta": {
 		"jurisdiction": "US/common",
-		"version": 1
+		"version": 1,
+		"resources": [
+			{ "label": "NFPA 72 overview", "url": "https://www.nfpa.org/codes-and-standards/all-codes-and-standards/list-of-codes-and-standards/detail?code=72" }
+		]
 	},
 	"rules": [
 		{

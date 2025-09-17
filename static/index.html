@@ -9,7 +9,7 @@
   <body>
     <main class="container">
       <div class="banner">
-        Informational only; codes vary. Confirm with your local Authority Having Jurisdiction (AHJ).
+        This tool provides estimates only and is NOT an official code determination or legal advice. Always verify with your local Authority Having Jurisdiction (AHJ).
         <button id="ahj-btn" class="link-btn">Find my AHJ</button>
       </div>
       <h1>Fire Alarm Compliance</h1>
@@ -54,10 +54,9 @@
           </label>
           <label>Interconnect Present (optional)
             <select name="interconnect_present">
-              <option value="">--</option>
+              <option value="unknown" selected>Unknown</option>
               <option value="yes">Yes</option>
               <option value="no">No</option>
-              <option value="unknown">Unknown</option>
             </select>
           </label>
           <label>Permit Planned (optional)
@@ -75,10 +74,17 @@
         <h2>Checklist</h2>
         <div id="checklist"></div>
         <p id="based-on" class="muted"></p>
+        <div id="resources" class="resources hidden">
+          <h3>Learn more</h3>
+          <ul id="resource-list"></ul>
+          <p class="muted small">External links are provided as references only; consult your AHJ for official requirements.</p>
+        </div>
         <div class="actions">
           <button id="copy-btn">Copy checklist</button>
           <a id="ics-link" href="/api/ics" download="alarm_reminders.ics">Add to calendar (.ics)</a>
+          <a id="coffee-link" class="button-link" href="https://buymeacoffee.com/conbon62" target="_blank" rel="noopener">Buy me a coffee</a>
         </div>
+        <p class="disclaimer-strong">Not official guidance. Requirements vary by jurisdiction and project scope. Always consult your AHJ.</p>
       </section>
     </main>
     <script src="/static/app.js"></script>
