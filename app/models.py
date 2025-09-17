@@ -106,13 +106,7 @@ class ChecklistPlan(BaseModel):
 	resources: List[dict] = []
 
 
-class ICSRequest(BaseModel):
-	email: Optional[str] = None
-	frequency: Literal["monthly"] = "monthly"
-	months: int = 12
-	start_date: Optional[date] = None
-	title: str = "Test smoke/CO alarms"
-	description: str = "Monthly test reminder"
+# Removed ICSRequest after calendar functionality was dropped
 
 
 # Legacy response kept for MVP endpoints

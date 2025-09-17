@@ -14,11 +14,12 @@ button:hover { filter: brightness(0.95); }
 #checklist h3 { margin: 18px 0 6px; }
 #checklist ul { margin: 0 0 8px 18px; }
 .actions { display: flex; gap: 12px; align-items: center; }
-a#ics-link { text-decoration: none; color: var(--accent); border: 1px solid var(--accent); padding: 8px 10px; border-radius: 6px; }
 .button-link { text-decoration: none; color: #fff; background: #ff813f; border: 1px solid #ff813f; padding: 8px 10px; border-radius: 6px; }
 .disclaimer-strong { margin-top: 10px; font-size: 14px; color: #b00020; }
 .resources { margin-top: 10px; }
 .resources ul { margin: 6px 0 10px 18px; }
 .muted.small { font-size: 12px; color: var(--muted); }
+.about { margin-top: 10px; }
+.about summary { cursor: pointer; color: var(--accent); }
 
 

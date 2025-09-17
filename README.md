@@ -1,13 +1,13 @@
 ## Fire Alarm Compliance (MVP)
 
-Minimal FastAPI app that generates a plain‑English checklist for home smoke/CO alarms from JSON rules (baseline + optional state overlay). A tiny frontend posts inputs and renders results; an ICS endpoint produces monthly reminders.
+Minimal FastAPI app that generates a plain‑English checklist for home smoke/CO alarms from JSON rules (baseline + optional state overlay). A tiny frontend posts inputs and renders results.
 
 > Disclaimer: Informational only; codes vary. Confirm with your local Authority Having Jurisdiction (AHJ).
 
 ### Features
 - JSON rule engine with inheritance/overlays: `rules/US/common.json`, `rules/US/CA/common.json`
 - Compact rule schema: conditions + recommendations + testing
-- API endpoints: POST `/api/checklist`, GET `/api/ics`, health `GET /health`
+- API endpoints: POST `/api/checklist`, health `GET /health`
 - Static frontend served at `/` with copy/export and calendar reminder
 - Render-friendly (Procfile + render.yaml), no database
 
@@ -80,14 +80,8 @@ Response (ChecklistPlan, abbreviated):
 }
 ```
 
-### GET /api/ics
-Query params (ICSRequest): `email` (ignored for now), `frequency=monthly`, `months` (default 12), `start_date=YYYY-MM-DD`, `title`, `description`.
-
-Example:
-```bash
-curl "http://localhost:8000/api/ics?months=12&title=Test%20smoke/CO%20alarms"
-```
-Returns `text/calendar` content for a monthly recurring event.
+### Calendar
+Calendar export was removed to keep the MVP focused.
 
 ## Rules schema (compact)
 - `meta`: `{ jurisdiction, version, inherits? }`

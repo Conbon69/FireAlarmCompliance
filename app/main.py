@@ -1,13 +1,12 @@
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
+from fastapi.responses import FileResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
 from .evaluator import evaluate_checklist, evaluate
-from .models import ChecklistRequest, ChecklistResponse, ChecklistPlan, ICSRequest
-from .utils_ics import build_monthly_ics
+from .models import ChecklistRequest, ChecklistResponse, ChecklistPlan
 
 
 app = FastAPI(title="Fire Alarm Compliance")
@@ -44,17 +43,6 @@ def health() -> JSONResponse:
 @app.post("/api/checklist", response_model=ChecklistPlan)
 def api_checklist(req: ChecklistRequest) -> ChecklistPlan:
 	return evaluate(req)
-
-
-@app.get("/api/ics")
-def api_ics(q: ICSRequest = Depends()) -> PlainTextResponse:
-	ics_content = build_monthly_ics(
-		summary=q.title,
-		description=q.description,
-		count=q.months,
-		start_date=q.start_date,
-	)
-	return PlainTextResponse(content=ics_content, media_type="text/calendar; charset=utf-8")
 
 
 if __name__ == "__main__":
