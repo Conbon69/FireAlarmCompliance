@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fire Alarm Compliance</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <main class="container">
+      <div class="banner">
+        Informational only; codes vary. Confirm with your local Authority Having Jurisdiction (AHJ).
+        <button id="ahj-btn" class="link-btn">Find my AHJ</button>
+      </div>
+      <h1>Fire Alarm Compliance</h1>
+
+      <form id="input-form">
+        <div class="grid">
+          <label>State
+            <input name="state" placeholder="e.g., CA" required />
+          </label>
+          <label>Property Type
+            <select name="property_type">
+              <option value="single_family">Single Family</option>
+              <option value="duplex">Duplex</option>
+              <option value="apartment">Apartment</option>
+            </select>
+          </label>
+          <label>Bedrooms
+            <input name="bedrooms" type="number" min="0" value="3" required />
+          </label>
+          <label>Floors
+            <input name="floors" type="number" min="1" value="2" required />
+          </label>
+          <label>Fuel appliance present?
+            <select name="has_fuel_appliance">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </label>
+          <label>Attached garage?
+            <select name="has_attached_garage">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </label>
+          <label>Year Bucket (optional)
+            <select name="year_bucket">
+              <option value="">--</option>
+              <option value="lt_1999">lt_1999</option>
+              <option value="y1999_2010">y1999_2010</option>
+              <option value="y2011_plus">y2011_plus</option>
+            </select>
+          </label>
+          <label>Interconnect Present (optional)
+            <select name="interconnect_present">
+              <option value="">--</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+              <option value="unknown">Unknown</option>
+            </select>
+          </label>
+          <label>Permit Planned (optional)
+            <select name="permit_planned">
+              <option value="">--</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit">Generate checklist</button>
+      </form>
+
+      <section id="results" class="hidden">
+        <h2>Checklist</h2>
+        <div id="checklist"></div>
+        <p id="based-on" class="muted"></p>
+        <div class="actions">
+          <button id="copy-btn">Copy checklist</button>
+          <a id="ics-link" href="/api/ics" download="alarm_reminders.ics">Add to calendar (.ics)</a>
+        </div>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+  </html>
+
+

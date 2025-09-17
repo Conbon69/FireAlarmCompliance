@@ -1,0 +1,68 @@
+{
+	"meta": {
+		"jurisdiction": "US/common",
+		"version": 1
+	},
+	"rules": [
+		{
+			"id": "us-smoke-baseline",
+			"when": { "always": true },
+			"recommend": [
+				{ "type": "smoke", "place": "each_bedroom", "source": "model_code", "citation": "NFPA 72" },
+				{ "type": "smoke", "place": "outside_sleeping_areas", "source": "model_code", "citation": "NFPA 72" },
+				{ "type": "smoke", "place": "each_level_incl_basement", "source": "model_code", "citation": "NFPA 72" }
+			],
+			"priority": 10
+		},
+		{
+			"id": "us-co-baseline",
+			"when": {
+				"any": [
+					{ "eq": { "has_fuel_appliance": true } },
+					{ "eq": { "has_attached_garage": true } }
+				]
+			},
+			"recommend": [
+				{ "type": "co", "place": "near_sleeping_areas", "source": "model_code", "citation": "NFPA 72" },
+				{ "type": "co", "place": "outside_sleeping_areas", "source": "model_code", "citation": "NFPA 72" }
+			],
+			"priority": 10
+		},
+		{
+			"id": "us-permit-note",
+			"when": { "eq": { "permit_planned": true } },
+			"notes": [
+				"Permit work may trigger hardwired, interconnected upgrades. Verify with your AHJ."
+			],
+			"priority": 5
+		}
+	],
+	"testing": [
+		{ "action": "test", "frequency": "monthly" },
+		{ "action": "clean", "frequency": "quarterly" },
+		{ "action": "replace_device", "frequency": "10_years", "note": "per manufacturer guidance" }
+	],
+
+	"smoke": [
+		{ "text": "Install smoke alarms inside every bedroom.", "when": {"field": "bedrooms", "gte": 1} },
+		{ "text": "Install smoke alarms outside each sleeping area." },
+		{ "text": "Install at least one smoke alarm on every level, including basements." }
+	],
+	"co": [
+		{ "text": "Install at least one CO alarm on every level with a sleeping area.", "when": {"field": "has_fuel_garage", "eq": true} },
+		{ "text": "Install a CO alarm near the door to an attached garage.", "when": {"field": "has_fuel_garage", "eq": true} }
+	],
+	"devices": [
+		{ "text": "Prefer photoelectric or dual-sensor smoke alarms in sleeping areas." },
+		{ "text": "Use 10-year sealed battery alarms where hardwiring not required." }
+	],
+	"notes": [
+		{ "text": "Follow manufacturer spacing and installation instructions." },
+		{ "text": "Interconnect alarms when possible; all alarms should sound together." }
+	],
+	"citations": [
+		{ "text": "NFPA 72 (National Fire Alarm and Signaling Code) guidance." }
+	]
+}
+
+

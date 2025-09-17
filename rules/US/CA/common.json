@@ -1,0 +1,29 @@
+{
+	"meta": {
+		"jurisdiction": "US/CA/common",
+		"version": 1,
+		"inherits": ["US/common"]
+	},
+	"rules": [
+		{
+			"id": "ca-sealed-battery-encouragement",
+			"when": { "any": [ { "eq": { "permit_planned": false } } ] },
+			"recommend": [
+				{ "type": "smoke", "place": "other", "note": "Prefer sealed 10-year battery when using battery-only replacements.", "source": "state", "citation": "CA SFM guidance", "confidence": 0.7 }
+			],
+			"priority": 6
+		},
+		{
+			"id": "ca-permit-wiring-note",
+			"when": { "eq": { "permit_planned": true } },
+			"recommend": [
+				{ "type": "smoke", "place": "other", "note": "When feasible, provide hardwired with battery backup and interconnection.", "source": "state", "citation": "California Residential Code R314/R315", "confidence": 0.8 }
+			],
+			"notes": ["CA: Permitted work may require hardwired/interconnected upgrades; verify with AHJ."],
+			"priority": 8
+		}
+	],
+	"testing": []
+}
+
+
